@@ -1,29 +1,235 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Redirection</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rejoins notre Discord</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #5865F2 0%, #404EED 50%, #1a1a2e 100%);
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Bulles flottantes en arrière-plan */
+    .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        animation: float 15s infinite ease-in-out;
+    }
+
+    .bubble:nth-child(1) { width: 80px; height: 80px; left: 10%; top: 20%; animation-delay: 0s; }
+    .bubble:nth-child(2) { width: 120px; height: 120px; left: 80%; top: 10%; animation-delay: 2s; }
+    .bubble:nth-child(3) { width: 60px; height: 60px; left: 70%; top: 70%; animation-delay: 4s; }
+    .bubble:nth-child(4) { width: 100px; height: 100px; left: 20%; top: 80%; animation-delay: 6s; }
+    .bubble:nth-child(5) { width: 40px; height: 40px; left: 50%; top: 40%; animation-delay: 1s; }
+    .bubble:nth-child(6) { width: 90px; height: 90px; left: 90%; top: 50%; animation-delay: 3s; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+        33% { transform: translateY(-30px) translateX(20px) scale(1.1); }
+        66% { transform: translateY(20px) translateX(-20px) scale(0.9); }
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        padding: 60px 50px;
+        text-align: center;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        max-width: 480px;
+        width: 90%;
+        position: relative;
+        z-index: 10;
+        animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Logo du serveur */
+    .server-logo {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 25px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(88, 101, 242, 0.5), 0 0 0 4px rgba(88, 101, 242, 0.3);
+        animation: pulse 2s infinite;
+        border: 3px solid white;
+    }
+
+    .server-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+
+    h1 {
+        color: #2c2f33;
+        font-size: 32px;
+        margin-bottom: 15px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #5865F2, #7289DA);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    p {
+        color: #6c757d;
+        font-size: 17px;
+        margin-bottom: 35px;
+        line-height: 1.6;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 35px;
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #3ba55c;
+        display: inline-block;
+        margin-right: 6px;
+        animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+    }
+
+    .stat-text {
+        color: #4f545c;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .join-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: linear-gradient(135deg, #5865F2, #4752C4);
+        color: white;
+        text-decoration: none;
+        padding: 18px 45px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 700;
+        box-shadow: 0 10px 25px rgba(88, 101, 242, 0.5);
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .join-btn:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(88, 101, 242, 0.6);
+        background: linear-gradient(135deg, #6872f5, #5865F2);
+    }
+
+    .join-btn:active {
+        transform: translateY(-2px) scale(0.98);
+    }
+
+    .join-btn svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+
+    .footer-text {
+        margin-top: 25px;
+        color: #adb5bd;
+        font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 40px 25px;
+        }
+        h1 {
+            font-size: 26px;
+        }
+        .stats {
+            gap: 15px;
+        }
+    }
+</style>
 </head>
 <body>
-    <p>Redirection...</p>
 
-    <script>
-        const redirects = {
-            "/discord": "https://discord.gg/NnF3RSWywT",
-            "/youtube": "https://youtube.com/@NiesYTB",
-            "/twitch": "https://twitch.tv/niesytb"
-            "/therms": "https://lulyo.ecloudserv.fr/therms",
-            "/site": "https://lulyo.ecloudserv.fr",
-            "/free-admin": "https://www.youtube.com/watch?v=Aq5WXmQQooo",
-        };
+    <!-- Bulles animées en fond -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
 
-        const path = window.location.pathname;
+    <div class="container">
+        <!-- Logo du serveur -->
+        <div class="server-logo">
+            <img src="https://cdn.discordapp.com/attachments/1552322469530959973/1552333295910391909/Capture_decran_2026-09-23_165756.png?ex=6ac2698a&is=6ac1180a&hm=4de2a8b062431b81693e4e35b33513f04e79274ee59509b46fc2ee9261f4db3a" alt="NiesMC Logo">
+        </div>
 
-        if (redirects[path]) {
-            window.location.replace(redirects[path]);
-        } else {
-            document.body.innerHTML = "<h1>404</h1><p>Lien inconnu.</p>";
-        }
-    </script>
+        <h1>Rejoins notre Discord !</h1>
+        <p>Une communauté active t'attend ! Viens discuter, participer et faire partie de l'aventure 🚀</p>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-dot"></span>
+                <span class="stat-text">En ligne</span>
+            </div>
+        </div>
+
+        <a href="https://discord.gg/NnF3RSWywT" target="_blank" class="join-btn">
+            <svg viewBox="0 0 24 24">
+                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+            </svg>
+            Rejoindre le serveur
+        </a>
+
+        <p class="footer-text">Clique sur le bouton pour nous rejoindre instantanément</p>
+    </div>
+
 </body>
 </html>
